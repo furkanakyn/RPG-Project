@@ -6,7 +6,7 @@ public class Mover : MonoBehaviour
     Ray ray;
     void Update()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButtonDown(1))
         {
             MoveCharacter();
         }
