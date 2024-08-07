@@ -49,8 +49,8 @@ public class PlayerController : MonoBehaviour
 
             if (hitEnemy)
             {
-                combat.Attack(hit.collider.gameObject); // Saldýrýyý baþlat
-                actionScheduler.StartAction(combat); // Combat'ý aktif et
+                combat.Attack(hit.collider.gameObject); 
+                actionScheduler.StartAction(combat); 
                 return true;
             }
         }

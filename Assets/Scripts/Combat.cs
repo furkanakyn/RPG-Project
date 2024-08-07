@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Combat : MonoBehaviour, IAction
 {
-    public GameObject targetObject; 
+    public Health targetObject; 
     public float weaponRange = 2f; 
     private Mover mover;
     ActionScheduler actionScheduler;
@@ -24,20 +24,24 @@ public class Combat : MonoBehaviour, IAction
 
     public void Attack(GameObject target)
     {
-        targetObject = target;
+        targetObject = target.GetComponent<Health>();
         actionScheduler.StartAction(this); 
     }
 
     public void Cancel()
     {
+        GetComponent<Animator>().ResetTrigger("attack");
+        GetComponent<Animator>().SetTrigger("stopAttack");
         targetObject = null; 
- 
     }
 
     void Update()
     {
         timeSinceLastAttack += Time.deltaTime;
-        
+        if (targetObject == null)
+        {
+            return;
+        }
         if (targetObject != null)
         {
             float distanceToTarget = Vector3.Distance(transform.position, targetObject.transform.position);
@@ -45,7 +49,7 @@ public class Combat : MonoBehaviour, IAction
             if (distanceToTarget > weaponRange)
             {
                 mover.MoveTo(targetObject.transform.position);
-                actionScheduler.StartAction(this); 
+                actionScheduler.StartAction(this);
             }
             else
             {
@@ -54,19 +58,30 @@ public class Combat : MonoBehaviour, IAction
 
             }
         }
+        if (targetObject.IsDead() == true)
+        {
+            GetComponent<Animator>().ResetTrigger("attack");
+            Cancel();
+            return;
+        }
     }
     
     private void AttackMethod()
     {
+       transform.LookAt(targetObject.transform);
         if (timeSinceLastAttack > timeBetweenAttacks)
         {
+            GetComponent<Animator>().ResetTrigger("stopAttack");
             GetComponent<Animator>().SetTrigger("attack");
             timeSinceLastAttack = 0; 
         }
     }
     void Hit()
     {
-        Health healt = targetObject.GetComponent<Health>();
-        healt.TakeDamage(weaponDamage);
+        if(targetObject == null)
+        {
+            return;
+        }
+        targetObject.TakeDamage(weaponDamage);
     }
 }
