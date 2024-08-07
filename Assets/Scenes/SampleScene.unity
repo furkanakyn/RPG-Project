@@ -3685,6 +3685,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetObject: {fileID: 0}
   weaponRange: 2
+  timeBetweenAttacks: 1.5
+  weaponDamage: 25
 --- !u!114 &1316573953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3834,6 +3836,7 @@ GameObject:
   - component: {fileID: 1383630714}
   - component: {fileID: 1383630713}
   - component: {fileID: 1383630718}
+  - component: {fileID: 1383630719}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -3951,6 +3954,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d00cfa98026cd084c855575f3fb89f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1383630719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383630712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf0cd3c816ef7904386ebd482a2ebe76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1001 &1385742750
 PrefabInstance:
   m_ObjectHideFlags: 0

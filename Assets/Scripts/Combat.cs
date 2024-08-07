@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security;
 using UnityEngine;
 
 public class Combat : MonoBehaviour, IAction
@@ -9,6 +10,9 @@ public class Combat : MonoBehaviour, IAction
     private Mover mover;
     ActionScheduler actionScheduler;
     IAction action;
+    float timeSinceLastAttack; 
+    public float timeBetweenAttacks = 1f;
+    [SerializeField] float weaponDamage;
 
 
     private void Start()
@@ -21,17 +25,19 @@ public class Combat : MonoBehaviour, IAction
     public void Attack(GameObject target)
     {
         targetObject = target;
-        actionScheduler.StartAction(this); // Combat'ý aktif et
+        actionScheduler.StartAction(this); 
     }
 
     public void Cancel()
     {
-        targetObject = null; // Saldýrýyý iptal et
+        targetObject = null; 
  
     }
 
     void Update()
     {
+        timeSinceLastAttack += Time.deltaTime;
+        
         if (targetObject != null)
         {
             float distanceToTarget = Vector3.Distance(transform.position, targetObject.transform.position);
@@ -43,9 +49,24 @@ public class Combat : MonoBehaviour, IAction
             }
             else
             {
-                mover.Cancel(); 
+                AttackMethod();
+                mover.Cancel();
+
             }
         }
     }
-
+    
+    private void AttackMethod()
+    {
+        if (timeSinceLastAttack > timeBetweenAttacks)
+        {
+            GetComponent<Animator>().SetTrigger("attack");
+            timeSinceLastAttack = 0; 
+        }
+    }
+    void Hit()
+    {
+        Health healt = targetObject.GetComponent<Health>();
+        healt.TakeDamage(weaponDamage);
+    }
 }
