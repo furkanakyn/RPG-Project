@@ -30,6 +30,6 @@ public class Health : MonoBehaviour
         }
         isDead = true;
         GetComponent<Animator>().SetTrigger("die");
-        GetComponent<Collider>().enabled = false;
+        GetComponent<ActionScheduler>().CancelCurrentAction();
     }
 }

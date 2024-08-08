@@ -5,6 +5,7 @@ public class Mover : MonoBehaviour, IAction
 {
     private NavMeshAgent agent;
     private Animator animator;
+    private Health health;
     private ActionScheduler actionScheduler;
     private Combat combat;
 
@@ -12,12 +13,14 @@ public class Mover : MonoBehaviour, IAction
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        health = GetComponent<Health>();
         actionScheduler = GetComponent<ActionScheduler>(); 
         combat = GetComponent<Combat>();
     }
 
     void Update()
     {
+        agent.enabled = !health.IsDead();
         UpdateAnimator();
     }
 

@@ -4,15 +4,6 @@ using UnityEngine;
 
 public class CombatTarget : MonoBehaviour
 {
-    
-    void Start()
-    {
         
-    }
-
     
-    void Update()
-    {
-        
-    }
 }

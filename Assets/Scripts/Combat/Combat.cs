@@ -5,14 +5,15 @@ using UnityEngine;
 
 public class Combat : MonoBehaviour, IAction
 {
-    public Health targetObject; 
-    public float weaponRange = 2f; 
+    private Health targetObject;
+    private CombatTarget target;
     private Mover mover;
-    ActionScheduler actionScheduler;
+    private ActionScheduler actionScheduler;
     IAction action;
-    float timeSinceLastAttack; 
-    public float timeBetweenAttacks = 1f;
+    float timeSinceLastAttack;
+    [SerializeField] float timeBetweenAttacks = 1f;
     [SerializeField] float weaponDamage;
+    [SerializeField] float weaponRange = 2f;
 
 
     private void Start()
@@ -76,12 +77,25 @@ public class Combat : MonoBehaviour, IAction
             timeSinceLastAttack = 0; 
         }
     }
+    public bool CanAttack(GameObject combatTarget)
+    {
+        if (combatTarget == null)
+        {
+            Debug.Log("CombatTarget Null");
+            return false;
+           
+        }
+
+        Health healtToTest = combatTarget.GetComponent<Health>();
+        return healtToTest != null && !healtToTest.IsDead();
+    }
     void Hit()
     {
         if(targetObject == null)
         {
             return;
         }
+        Health healtToTest = GetComponent<Health>();
         targetObject.TakeDamage(weaponDamage);
     }
 }
