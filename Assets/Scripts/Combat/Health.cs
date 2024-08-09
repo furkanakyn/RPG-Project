@@ -16,6 +16,7 @@ public class Health : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health= Mathf.Max(health-damage, 0);
+        Debug.Log($"{gameObject.name} took damage: {damage}. Current health: {health}");
         if (health == 0)
         {
             DieMethod();
