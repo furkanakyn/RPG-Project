@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
             bool moveHit = Physics.Raycast(GetMouseRay(), out hit, 100, groundLayerMask);
             if (moveHit)
             {
-                mover.MoveTo(hit.point);
+                mover.MoveTo(hit.point,1f);
                 actionScheduler.StartAction(mover); 
                 combat.Cancel();
                 return true;

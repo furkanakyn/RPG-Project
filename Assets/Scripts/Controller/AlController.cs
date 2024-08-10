@@ -12,6 +12,7 @@ public class AlController : MonoBehaviour
     [SerializeField] float suspicionTime;
     [SerializeField] float wayPointTolorence = 1f;
     [SerializeField] float wayPointStopTime = 2f;
+    [Range(0,1)][SerializeField] float patrolSpeedFraction = 0.2f;
     private Vector3 enemyLocation;
     private float timeSinceLastSawPlayer = 0f;
     private float timeSinceArrivedWayPoint = 0f;
@@ -40,7 +41,6 @@ public class AlController : MonoBehaviour
         else if (timeSinceLastSawPlayer < suspicionTime)
         {
             actionScheduler.CancelCurrentAction();
-            Debug.Log("Suspicion time active.");
         }
         else
         {
@@ -57,7 +57,7 @@ public class AlController : MonoBehaviour
             }
             if (timeSinceArrivedWayPoint > wayPointStopTime)
             {
-                mover.MoveTo(nextPosition);
+                mover.MoveTo(nextPosition,patrolSpeedFraction);
             }
         }
         timeSinceLastSawPlayer += Time.deltaTime;

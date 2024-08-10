@@ -49,7 +49,7 @@ public class Combat : MonoBehaviour, IAction
 
             if (distanceToTarget > weaponRange)
             {
-                mover.MoveTo(targetObject.transform.position);
+                mover.MoveTo(targetObject.transform.position,1f);
                 actionScheduler.StartAction(this);
             }
             else
