@@ -4,9 +4,10 @@ using UnityEngine.UIElements;
 
 public class ScoutEnemy : MonoBehaviour
 {
-    [SerializeField] float visionRange = 15f; // Gözlem mesafesi
-    [SerializeField] LayerMask enemyLayer; // Savaþçý düþmanlarýn katmaný
-    [SerializeField] LayerMask playerLayer; // Oyuncu katmaný
+    [SerializeField] float visionRange = 15f;
+    [SerializeField] LayerMask enemyLayer; 
+    [SerializeField] LayerMask playerLayer;
+    [SerializeField] float alertRange = 15f;
 
     private GameObject player;
     private Mover mover;
@@ -43,7 +44,7 @@ public class ScoutEnemy : MonoBehaviour
 
     private void AlertNearbyEnemies()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, visionRange, enemyLayer);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, alertRange, enemyLayer);
 
         
         if (hitColliders.Length == 0)
@@ -68,9 +69,12 @@ public class ScoutEnemy : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmosSeleceted()
     {
-        Gizmos.color = Color.blue;
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, visionRange);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, alertRange);
     }
+
 }

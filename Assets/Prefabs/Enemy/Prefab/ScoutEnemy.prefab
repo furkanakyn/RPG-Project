@@ -221,10 +221,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85a176452a6c16145990164a7f4b3a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRange: 10
+  visionRange: 8
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
+  alertRange: 10
