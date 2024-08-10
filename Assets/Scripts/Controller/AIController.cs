@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AlController : MonoBehaviour
+public class AIController : MonoBehaviour
 {
     private Combat combat;
     private Health health;
@@ -63,7 +63,15 @@ public class AlController : MonoBehaviour
         timeSinceLastSawPlayer += Time.deltaTime;
         timeSinceArrivedWayPoint += Time.deltaTime;
     }
-
+    public void Alert(GameObject targetPlayer)
+    {
+        player = targetPlayer;
+        Debug.Log("Enemy alerted by scout!");
+        if (combat.CanAttack(player))
+        {
+            combat.Attack(player);
+        }
+    }
 
     private bool AtWayPoint()
     {
