@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ScoutEnemy : MonoBehaviour
 {
@@ -7,10 +9,12 @@ public class ScoutEnemy : MonoBehaviour
     [SerializeField] LayerMask playerLayer; // Oyuncu katmaný
 
     private GameObject player;
+    private Mover mover;
 
     void Start()
     {
         player = GameObject.FindWithTag("Player");
+        mover = GetComponent<Mover>();
     }
 
     void Update()
@@ -18,6 +22,7 @@ public class ScoutEnemy : MonoBehaviour
         if (PlayerInSight())
         {
             AlertNearbyEnemies();
+
             Debug.Log("Scout spotted the player!");
         }
     }
@@ -38,10 +43,9 @@ public class ScoutEnemy : MonoBehaviour
 
     private void AlertNearbyEnemies()
     {
-        // Gözcü düþman yakýnýndaki diðer düþmanlarý uyarýyor
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, visionRange, enemyLayer);
 
-        // Eðer etrafta düþman yoksa fonksiyondan çýk
+        
         if (hitColliders.Length == 0)
         {
             Debug.LogWarning("No enemies found to alert.");
@@ -51,7 +55,8 @@ public class ScoutEnemy : MonoBehaviour
         foreach (var hitCollider in hitColliders)
         {
             AIController enemyAI = hitCollider.GetComponent<AIController>();
-            if (enemyAI != null && hitCollider.gameObject != this.gameObject) // Kendini kontrol etmeyi unutma
+            Health enemyHealth = hitCollider.GetComponent<Health>();
+            if (enemyAI != null && enemyHealth != null && hitCollider.gameObject != this.gameObject) 
             {
                 enemyAI.Alert(player);
                 Debug.Log("Alerting enemy: " + hitCollider.name);
