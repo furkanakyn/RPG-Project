@@ -36,6 +36,7 @@ public class AIController : MonoBehaviour
         {
             timeSinceLastSawPlayer = 0;
             combat.Attack(player);
+            health.SetActiveHealthBar(true);
             Debug.Log("Attacking player.");
         }
         else if (timeSinceLastSawPlayer < suspicionTime)
