@@ -13,6 +13,7 @@ public class Health : MonoBehaviour
     private void Start()
     {
         fillObject.GetComponent<Slider>().maxValue = health;
+        fillObject.GetComponent<Slider>().value = health;
     }
     public bool IsDead()
     {
