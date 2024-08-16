@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
     public Health bossHealth;
     public Direction direction;
     public GameObject queen;
+    public GameObject player;
     private bool isBossDefeated = false;
     private bool isQueenSpawned = false;
 

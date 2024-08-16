@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private GameObject mainCamera;
-    [SerializeField] private Camera[] cutsceneCameras; 
-    [SerializeField] private float cutsceneDuration = 5f; 
+    [SerializeField] GameObject mainCamera;
+    [SerializeField] Camera[] cutsceneCameras; 
+    [SerializeField] float cutsceneDuration = 5f; 
+    public PlayerController playerController;
 
     private void Start()
     {
@@ -22,7 +23,7 @@ public class CameraController : MonoBehaviour
 
     private IEnumerator PlayCutscene()
     {
-       
+        playerController.enabled = false;
         mainCamera.gameObject.SetActive(false);
 
        
@@ -35,5 +36,6 @@ public class CameraController : MonoBehaviour
 
     
         mainCamera.gameObject.SetActive(true);
+        playerController.enabled = true;
     }
 }

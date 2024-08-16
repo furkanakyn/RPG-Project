@@ -28,11 +28,14 @@ public class Mover : MonoBehaviour, IAction
     public void MoveTo(Vector3 destination,float speedFraction)
     {
         if (!agent.isActiveAndEnabled) return;
-
+        if(gameObject.name == "Queen" )
+        {
+          
+        }
         agent.speed = maxSpeed * speedFraction;
         agent.destination = destination;
         agent.isStopped = false;
-        
+
     }
 
     public void Cancel()

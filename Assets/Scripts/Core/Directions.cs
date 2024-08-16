@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Search;
 using UnityEngine;
 
@@ -26,7 +27,8 @@ public class Direction : MonoBehaviour
             endPoint1.SetActive(true);
             endPoint2.SetActive(true);
             gameObject.SetActive(false);
-            
+            gameController.player.GetComponent<Mover>().Cancel();
+            gameController.player.GetComponent<ActionScheduler>().CancelCurrentAction();
             if (cameraController != null)
             {
                 cameraController.StartCutscene();
