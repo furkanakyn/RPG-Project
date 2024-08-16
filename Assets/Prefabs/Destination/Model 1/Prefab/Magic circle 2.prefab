@@ -14703,13 +14703,15 @@ GameObject:
   - component: {fileID: 3423388300971593625}
   - component: {fileID: 1601506141239540749}
   - component: {fileID: 5574110145886096913}
+  - component: {fileID: 1317524543178584211}
+  - component: {fileID: 986548288321892960}
   m_Layer: 0
   m_Name: Magic circle 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3423388300971593625
 Transform:
   m_ObjectHideFlags: 0
@@ -19584,6 +19586,43 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &1317524543178584211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3377181292992421420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ce62f7cafe7a04da7087cbf56208d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endPoint1: {fileID: 0}
+  endPoint2: {fileID: 0}
+  cameraController: {fileID: 0}
+  gameController: {fileID: 0}
+--- !u!65 &986548288321892960
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3377181292992421420}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5360069, y: 1.284471, z: 1.6586838}
+  m_Center: {x: 0, y: 0.56099534, z: -0.04181099}
 --- !u!1 &8598798586939600705
 GameObject:
   m_ObjectHideFlags: 0

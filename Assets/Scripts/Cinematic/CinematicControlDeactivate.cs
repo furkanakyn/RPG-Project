@@ -30,4 +30,5 @@ public class CinematicControlDeactivate : MonoBehaviour
         mover.Cancel(); 
         player.GetComponent<PlayerController>().enabled = false;
     }
+
 }

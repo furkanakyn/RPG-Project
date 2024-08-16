@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     private bool InteractWithMovement()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButtonDown(1))
         {
             RaycastHit hit;
             bool moveHit = Physics.Raycast(GetMouseRay(), out hit, 100, groundLayerMask);
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
     private bool InteractWithCombat()
     {
     
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButtonDown(1))
         {
             RaycastHit hit;
             bool hitEnemy = Physics.Raycast(GetMouseRay(), out hit, 100, enemyLayerMask);
@@ -62,7 +62,6 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
-
 
     private static Ray GetMouseRay()
     {
